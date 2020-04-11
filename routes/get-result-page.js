@@ -73,10 +73,11 @@ router.get('/', function (req, res) {
                         image.write("path.jpeg");
                         data['course'] = courseArr;
                         data['header'] = response.header;
-                        fs.readFile("./path.jpeg", (err, image1) => {
-                          data['img'] = image1;
-                          res.send(data);  ;
-                          });
+                        image.getBase64(Jimp.AUTO, (err, res1) => {
+                          console.log(res1)
+                          data['img'] = res1;
+                          res.send(data);
+                        })
                         
                      
                       })
